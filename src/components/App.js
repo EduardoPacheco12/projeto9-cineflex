@@ -1,8 +1,9 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import React from "react";
-import MainScreen from "./screen1/MainScreen";
+import MainScreen from "./MainScreen";
 import "../assets/css/reset.css";
 import "../assets/css/style.css";
+import SessionScreen from "./SessionScreen";
 
 export default function App() {
     //UI
@@ -10,6 +11,7 @@ export default function App() {
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<MainScreen />} />
+                <Route path="/sessoes/:idSessao" element={<SessionScreen />} />
             </Routes>
         </BrowserRouter>
     );
