@@ -1,47 +1,6 @@
-import { useState, useEffect} from 'react';
-import axios from 'axios';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 
-function Filme(props) {
-    return(
-        <Link to={`/sessoes/${props.link}`}>
-            <li>
-                <img src={props.image} alt=""/>  
-            </li>
-        </Link>
-    );
-}
-
-export default function MainScreen() {
-    //LOGIC
-    const [images, setImages] = useState([]);
-
-    useEffect(() => {
-        const promise = axios.get("https://mock-api.driven.com.br/api/v5/cineflex/movies");
-
-        promise.then((response) => {setImages(response.data)});
-
-    }, []);
-    //UI
-    return(
-        <>
-            <Top>
-                <h1>CINEFLEX</h1>
-            </Top>
-            <SelectMovie>
-                <h3>Selecione o Filme</h3>
-            </SelectMovie>
-            <Conteudo>
-                {images.map((image, index) => <Filme key={index} image={image.posterURL} link={image.id}/>)}
-            </Conteudo>    
-        </>
-    );
-}
-
-
-//STYLE
-const Top = styled.header `
+export const Top = styled.header `
     @media (max-width: 1023px) {
         height: 68px;
         background-color:#C3CFD9;
@@ -53,11 +12,16 @@ const Top = styled.header `
         font-size: 34px;
         line-height: 40px;
         color: #E8833A;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
     }
 `;
 
-const SelectMovie = styled.div `
+export const SelectMovie = styled.div `
     @media (max-width: 1023px) {
+        margin-top: 68px;
         height: 100px;
         display: flex;
         justify-content: center;
@@ -71,7 +35,7 @@ const SelectMovie = styled.div `
     }
 `;
 
-const Conteudo = styled.ul `
+export const Content = styled.ul `
     @media (max-width: 1023px) {
         margin-left: 25px;
         margin-right: 25px;
