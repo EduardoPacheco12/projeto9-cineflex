@@ -9,15 +9,13 @@ import FinishScreen from './screen4/FinishScreen';
 import { useState } from 'react';
 
 export default function App() {
-    //LOGIC
-    const [object, setObject] = useState({});
     //UI
     return (
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<MainScreen />} />
                 <Route path="/sessoes/:idFilme" element={<SessionScreen />} />
-                <Route path="/assentos/:idSessao" element={<TicketScreen setObject={setObject} object={object}/>}/>
+                <Route path="/assentos/:idSessao" element={<TicketScreen />}/>
                 <Route path="/sucesso" element={<FinishScreen/>} />
             </Routes>
         </BrowserRouter>

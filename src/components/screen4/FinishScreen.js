@@ -3,8 +3,10 @@ import styled from 'styled-components';
 import { useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 export default function FinishScreen() {
+    const location = useLocation();
     return (
         <>
             <Top>
@@ -16,17 +18,21 @@ export default function FinishScreen() {
             <Content>
                 <div>
                     <h4>Filme e sessão</h4>
-                    <p>Enola Holmes</p>
-                    <p>24/06/2021 15:00</p>
+                    <p>{location.state.config.movie}</p>
+                    <p>{location.state.config.date} {location.state.config.hour}</p>
                 </div>
+                <div>
                     <h4>Ingressos</h4>
-                    <p>Assento 15</p>
-                    <p>Assento 16</p>
+                    {location.state.config.id.map((id, index) => <p key={index}>Assento {id}</p>)}
+                </div>
                 <div>
                     <h4>Comprador</h4>
-                    <p>Nome: João da Silva Sauro</p>
-                    <p>CPF: 123.456.789-10</p>
+                    <p>Nome: {location.state.config.name}</p>
+                    <p>CPF: {location.state.config.cpf}</p>
                 </div>
+                <Click to={"/"}>
+                    <button>Voltar pra home</button>
+                </Click>
             </Content>
         </>
     );
@@ -74,14 +80,20 @@ const OrderConfirmation = styled.div `
     }
 `;
 
+const Click = styled(Link) `
+    text-decoration: none;
+`;
+
 const Content = styled.div `
     @media (max-width: 1023px) {
-        background-color: red;
         max-width: 375px;
         min-width: 280px;
         margin-left: auto;
         margin-right: auto;
         padding-left: 5px;
+        div{
+            padding-top: 20px;
+        }
         h4 {
             font-family: 'Roboto';
             font-weight: 700;
@@ -102,7 +114,28 @@ const Content = styled.div `
             align-items: center;
             letter-spacing: 0.04em;
             color: #293845;
-            margin-bottom: 14px;
+        }
+
+        button {
+            background-color: #E8833A;
+            border: 1px solid #E8833A;
+            border-radius: 3px;
+            width: 224px;
+            height: 42px;
+            margin-top: 60px;
+            margin-left: auto; 
+            margin-right: auto;
+            font-family: 'Roboto';
+            font-weight: 400;
+            font-size: 18px;
+            line-height: 21px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            letter-spacing: 0.04em;
+            color: #FFFFFF;
+            text-decoration: none;
         }
     }
 `;

@@ -55,12 +55,17 @@ export const Content = styled.div `
     }
 `;
 
+/* 
+Amarelo = "#FBE192"
+Cinza = "#C3CFD9"
+Verde = "#8DD7CF"
+*/
 export const Seat = styled.li `
     @media (max-width: 1023px) {
         width: 26px;
         height: 26px;
-        background-color: ${props => props.available ? "#C3CFD9" : "#FBE192"};
-        border: 1px solid ${props => props.available ? "#808F9D" : "#F7C52B"};
+        background-color: ${props => props.available ? (props.selecionado ? "#8DD7CF" : "#C3CFD9") : "#FBE192"};
+        border: 1px solid ${props => props.available ? (props.selecionado ? "#1AAE9E" : "#7B8B99") : "#F7C52B"};
         border-radius: 12px;
         margin-left: 3px;
         margin-right: 3px;
